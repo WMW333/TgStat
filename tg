@@ -1,0 +1,20 @@
+import requests
+
+def get_json(endpoint):
+    response = requests.get(endpoint)
+    
+    if response.ok:
+        json_data = response.json()
+        return json_data
+    else:
+        print("Status Code: ", response.status_code)
+        print("Response Content:", response.content)
+        raise Exception("Errore....")
+
+def show(data):
+    print("Json Data:" , data)
+        
+if __name__== "__main__":
+    endpoint = "https://api.tgstat.ru/channels/stat/?channelId=KucoinSignalPumps&token=66143635ec7b777f0a5b5c2b6886379f"
+    data = get_json(endpoint)
+    show(data)
